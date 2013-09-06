@@ -5,6 +5,30 @@
  * @package Flatt UI Theme
  */
 
+
+if (!function_exists('bs_theme_setup')):
+    function bs_theme_setup() {
+
+        load_theme_textdomain('bs', get_template_directory() . '/lang');
+
+/*
+        add_theme_support('automatic-feed-links');
+        add_theme_support('post-thumbnails');
+        add_theme_support('post-formats', array( 'aside', 'image', 'gallery', 'link', 'quote', 'status', 'video', 'audio', 'chat' ));
+        */
+
+        register_nav_menus(
+            array(
+                'main-menu' => __('Main Menu', 'bs'),
+            ));
+        // load custom walker menu class file
+        require 'includes/class-bs_walker_nav_menu.php';
+    }
+endif;
+add_action('after_setup_theme', 'bs_theme_setup');
+
+
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
